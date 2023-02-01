@@ -2,6 +2,19 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.2.
 
+## Key features
+
+The app should display a welcome view where users will be able to either log in or register an account.
+Once authenticated, the user should now view all movies.
+Upon clicking on a particular movie, users will be taken to a single movie view, where additional movie details will be displayed.
+
+## Technologies used
+
+TypeScript, Angular, TypeDoc
+
+## Deployed app link
+https://kathanira.github.io/myFlix-Angular-client/welcome
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
@@ -25,3 +38,8 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Screenshots
+Main Page:
+
+ ![Screenshot1](img/Screenshot1.png)
