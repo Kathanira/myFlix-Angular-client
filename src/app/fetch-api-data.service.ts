@@ -19,6 +19,13 @@ import { Injectable } from '@angular/core';
    // This will provide HttpClient to the entire class, making it available via this.http
    constructor(private http: HttpClient) {}
 
+   /**
+    * @service POST to the respective endpoint of apiUrl to register a new user
+    * @param {any} userDetails
+    * @returns a new user object in json format
+    * @function userRegistration
+    */
+  
    // User registration
    public userRegistration(userDetails: any): Observable<any> {
      console.log(userDetails);
@@ -27,6 +34,13 @@ import { Injectable } from '@angular/core';
        .pipe(catchError(this.handleError));
    }
 
+  /**
+    * @service POST to the respective endpoint of apiUrl to login a user
+    * @param {any} userDetails
+    * @returns a user object in json format
+    * @function userLogin
+    */
+  
    // User login
    public userLogin(userDetails: any): Observable<any> {
      console.log(userDetails);
@@ -34,6 +48,12 @@ import { Injectable } from '@angular/core';
        .post(apiUrl + 'login', userDetails)
        .pipe(catchError(this.handleError));
    }
+
+    /**
+    * @service GET to the respective endpoint of apiUrl to get all movies
+    * @returns an array of all movies in json format
+    * @function getAllMovies
+    */
 
    // Get all movies
    getAllMovies(): Observable<any> {
@@ -47,6 +67,13 @@ import { Injectable } from '@angular/core';
        .pipe(map(this.extractResponseData), catchError(this.handleError));
    }
 
+    /**
+    * @service GET to the respective endpoint of apiUrl to get a movie by title
+    * @param {string} title
+    * @returns an array of movie objects in json format
+    * @function getMovie
+    */
+
    // Get one movie
    getOneMovie(Title: string): Observable<any> {
      const token = localStorage.getItem('token');
@@ -56,6 +83,13 @@ import { Injectable } from '@angular/core';
        })
        .pipe(map(this.extractResponseData), catchError(this.handleError));
    }
+
+    /**
+    * @service GET to the respective endpoint of apiUrl to get director info
+    * @param {string} directorName
+    * @returns an array of movie objects in json format
+    * @function getDirector
+    */
 
    // Get director
    getDirector(directorName: string): Observable<any> {
@@ -67,6 +101,13 @@ import { Injectable } from '@angular/core';
        .pipe(map(this.extractResponseData), catchError(this.handleError));
    }
 
+   /**
+    * @service GET to the respective endpoint of apiUrl to get genre info
+    * @param {string} genreName
+    * @returns an array of movie objects in json format
+    * @function getGenre
+    */
+
    // Get genre
    getGenre(genreName: string): Observable<any> {
      const token = localStorage.getItem('token');
@@ -76,6 +117,12 @@ import { Injectable } from '@angular/core';
        })
        .pipe(map(this.extractResponseData), catchError(this.handleError));
    }
+
+ /**
+    * @service GET to the respective endpoint of apiUrl to get a specific user
+    * @returns a user object in json format
+    * @function getUser
+    */
 
    // Get user
    getUser(): Observable<any> {
@@ -88,6 +135,12 @@ import { Injectable } from '@angular/core';
        .pipe(map(this.extractResponseData), catchError(this.handleError));
    }
 
+  /**
+    * @service GET to the respective endpoint of apiUrl to get all favorite movies
+    * @returns a list of movie ids
+    * @function getFavoriteMovies
+    */
+  
    // Get favourite movies for a user
    getFavoriteMovies(): Observable<any> {
      const username = localStorage.getItem('user');
@@ -98,6 +151,12 @@ import { Injectable } from '@angular/core';
        })
        .pipe(map(this.extractResponseData), catchError(this.handleError));
    }
+
+    /**
+    * @service POST to the respective endpoint of apiUrl to add a movie to a user's favourites
+    * @returns a user object in json format
+    * @function addFavoriteMovie
+    */
 
    // Add a movie to favourite Movies
    addFavoriteMovie(MovieID: string): Observable<any> {
@@ -110,6 +169,12 @@ import { Injectable } from '@angular/core';
        .pipe(map(this.extractResponseData), catchError(this.handleError));
    }
 
+ /**
+    * @service PUT to the respective endpoint of apiUrl to update a user's details
+    * @returns a user object in json format
+    * @function editUser
+    */
+
    // Edit user
    editUser(updatedUser: any): Observable<any> {
      const username = localStorage.getItem('user');
@@ -120,6 +185,12 @@ import { Injectable } from '@angular/core';
        })
        .pipe(map(this.extractResponseData), catchError(this.handleError));
    }
+
+  /**
+    * @service DELETE to the respective endpoint of apiUrl to delete a user
+    * @returns success message
+    * @function deleteUser
+    */
 
    // Delete user
    deleteUser(): Observable<any> {
@@ -132,6 +203,12 @@ import { Injectable } from '@angular/core';
        .pipe(map(this.extractResponseData), catchError(this.handleError));
    }
 
+   /**
+    * @service DELETE to the respective endpoint of apiUrl to remove a movie from a user's favourites
+    * @returns a user object in json format
+    * @function removeFavoriteMovie
+    */
+
    // Remove a movie from the favorite movies
    removeFavoriteMovie(MovieID: string): Observable<any> {
      const username = localStorage.getItem('user');
@@ -143,11 +220,23 @@ import { Injectable } from '@angular/core';
        .pipe(map(this.extractResponseData), catchError(this.handleError));
    }
 
+   /**
+    * Extracts response data from HTTP response
+    * @param res
+    * @returns response body or empty object
+    */
+
    // Non-typed response extraction
    private extractResponseData(res: any): any {
      const body = res;
      return body || {};
    }
+
+  /**
+    * Error handler
+    * @param error
+    * @returns error message
+    */
 
    private handleError(error: HttpErrorResponse): any {
      if (error.error instanceof ErrorEvent) {
