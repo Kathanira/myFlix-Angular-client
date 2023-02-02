@@ -1,40 +1,23 @@
-import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-@Component({
-  selector: "app-navbar",
-  templateUrl: "./navbar.component.html",
-  styleUrls: ["./navbar.component.scss"],
-})
-export class NavbarComponent implements OnInit {
-  constructor(public router: Router) {}
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-   ngOnInit(): void {}
+import { NavbarComponent } from './navbar.component';
 
-   /**
-    * Navigates to movies page
-    * @function goToMovies
-    */
+describe('NavbarComponent', () => {
+  let component: NavbarComponent;
+  let fixture: ComponentFixture<NavbarComponent>;
 
-   goToMovies(): void {
-     this.router.navigate(["movies"]);
-   }
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ NavbarComponent ]
+    })
+    .compileComponents();
 
-   /**
-    * Navigates to user profile
-    * @function goToProfile
-    */
+    fixture = TestBed.createComponent(NavbarComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-   goToProfile(): void {
-     this.router.navigate(["profile"]);
-   }
-
-   /**
-    * logs out user, clears token and username from local storage
-    * @function logOut
-    */
-
-   logOut(): void {
-     localStorage.clear();
-     this.router.navigate(["welcome"]);
-  }
-}
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
